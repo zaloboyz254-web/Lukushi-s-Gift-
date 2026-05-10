@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Mother's Day, Luku 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background: linear-gradient(135deg, #1e0f3a, #3a1f6e, #6b3fa0);
+  color: #faf5ff;
+  overflow-x: hidden;
+}
+
+/* MUSIC */
+audio {
+  display: none;
+}
+
+/* FLOWERS */
+.flower {
+  position: fixed;
+  top: -50px;
+  font-size: 22px;
+  animation: fall linear forwards;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10vh); }
+  100% { transform: translateY(110vh); }
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 90px 20px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  color: #e8d5f5;
+}
+
+.hero h2 {
+  margin-top: 10px;
+  font-weight: 300;
+  color: #c4a0e8;
+}
+
+/* SECTION */
+section {
+  max-width: 900px;
+  margin: auto;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+}
+
+/* IMAGES */
+img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* VIDEO */
+video {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* LETTER */
+.letter {
+  white-space: pre-line;
+  line-height: 1.8;
+  font-size: 1.2rem;
+  color: #e8d5f5;
+}
+
+/* SCROLL ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="music" loop>
+  <source src="your-song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Happy Mother's Day 💜</h1>
+  <h2>For Lukushi (Luku)</h2>
+</div>
+
+<!-- PHOTOS -->
+<section class="reveal">
+  <h2>Beautiful Memories</h2>
+
+  <div class="card">
+    <img src="Picture1.jpg" alt="Picture 1">
+  </div>
+
+  <div class="card">
+    <img src="Picture2.jpg" alt="Picture 2">
+  </div>
+
+  <div class="card">
+    <img src="Picture3.jpg" alt="Picture 3">
+  </div>
+
+  <div class="card">
+    <video controls>
+      <source src="Video1.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section class="reveal">
+  <h2>💜 A Letter for Luku</h2>
+
+  <div class="card letter">
+
+Dear Luku,
+
+From the moment you became a mother, something beautiful unfolded in you. A love that is soft, strong, and constant in every way that matters.
+
+In the way you look at Rio.
+In the way you protect him without needing attention for it.
+In the quiet strength you carry every single day.
+
+Watching you with Rio is like watching love exist in its purest form. He is safe in your world in a way that words cannot fully explain.
+
+And Austine, he is lucky. He found someone who turned his life into a home filled with warmth and meaning.
+
+Luku, you are not just a mother. You are a reminder that love done right is powerful and gentle at the same time.
+
+May you always feel appreciated, even in the small quiet moments when nobody is saying it out loud.
+
+Happy Mother's Day, Luku 💜
+
+With all our love — Puru & Mwangi
+
+  </div>
+</section>
+
+<script>
+
+/* MUSIC START ON FIRST CLICK */
+window.addEventListener("click", () => {
+  document.getElementById("music").play();
+}, { once: true });
+
+/* FLOWERS */
+const emojis = ["🌸","🌺","🌷","💐","💜"];
+
+function createFlower() {
+  const flower = document.createElement("div");
+  flower.classList.add("flower");
+  flower.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+  flower.style.left = Math.random() * window.innerWidth + "px";
+  flower.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+  document.body.appendChild(flower);
+
+  setTimeout(() => flower.remove(), 8000);
+}
+
+setInterval(createFlower, 300);
+
+/* SCROLL REVEAL */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+});
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+</script>
+
+</body>
+</html>
